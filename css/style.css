@@ -480,18 +480,9 @@ body.navToggleActive {
   -o-object-fit: contain;
   object-fit: contain;
 }
-.copyrightCol {
-	padding: 20px 0 0;
-  font-size: 14px;
-  color: rgb(51, 50, 50);
-}
 #noo:hover{
   color:rgb(51, 50, 50);
 }
-.copyrightCol p {
-	margin: 0;
-}
-
 
 /* portfolio page */
 .innerPageBannerCol {
