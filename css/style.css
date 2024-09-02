@@ -106,13 +106,25 @@ a, .btn {
   font-family: var(--titleFont)
 }
 .smTitle {
-  font-size: 22px;
+  font-size: 36px;
   line-height: normal;
   font-weight: var(--regular);
-  font-family: var(--titleFont)
+  font-family: var(--titleFont);
+  text-shadow: 
+  0 0 5px #057eff,
+  0 0 10px #057eff, 
+  0 0 15px #057eff, 
+  0 0 20px #057eff, 
+  0 0 25px #057eff;
 }
 .smText {
   font-size: 36px;
+  text-shadow: 
+  0 0 5px #057eff, 
+  0 0 10px #057eff, 
+  0 0 15px #057eff, 
+  0 0 20px #057eff, 
+  0 0 25px #057eff;
 }
 .xsTitle {
   font-size: 18px;
@@ -121,6 +133,7 @@ a, .btn {
 
 .regular {
   font-weight: var(--regular);
+  font-family: var(--titleFont);
 }
 .medium {
   font-weight: var(--medium);
