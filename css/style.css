@@ -112,7 +112,7 @@ a, .btn {
   font-family: var(--titleFont)
 }
 .smText {
-  font-size: 22px;
+  font-size: 36px;
 }
 .xsTitle {
   font-size: 18px;
@@ -465,7 +465,7 @@ body.navToggleActive {
 
 /* footer */
 .footerCol {
-  padding: 50px 0;
+  padding: 0 0 30px;
   text-align: center;
 }
 .socialCol li {
