@@ -1081,13 +1081,15 @@ input[type=text], input[type=email], select, textarea {
 
 /* Back arrow styles */
 .backArrow {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  font-size: 1.2rem;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
   color: black;
   text-decoration: none;
-  z-index: 1000;
+  z-index: 9999;
+  line-height: 1;
+  padding: 10px;
 }
 
 .backArrow:hover {
@@ -1095,30 +1097,10 @@ input[type=text], input[type=email], select, textarea {
   text-decoration: none;
 }
 
-.backArrow::before {
-  content: "←";
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-}
-
-/* Adjust blog post padding to account for back arrow */
-.blogPost {
-  padding-top: 4rem !important;
-  position: relative;
-}
-
 @media (max-width: 767px) {
   .backArrow {
-    top: 1rem;
-    left: 1rem;
-    font-size: 1rem;
-  }
-  
-  .backArrow::before {
-    font-size: 1.2rem;
-  }
-  
-  .blogPost {
-    padding-top: 3rem !important;
+    top: 15px;
+    left: 15px;
+    font-size: 28px;
   }
 }
