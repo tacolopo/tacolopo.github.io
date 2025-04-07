@@ -153,7 +153,7 @@ a, .btn {
   left: 0;
   right: 0;
   top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .fixedHeader .headerCol {
 	padding: 10px 0;
@@ -734,10 +734,20 @@ body.navToggleActive {
   }
   .headerCol {
     padding: 10px 0;
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
   .headerCol {
     visibility: visible !important;
+  }
+  
+  /* Remove margin between navbar and title for blog posts on mobile */
+  .blogPost .xlTitle {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .blogPost {
+    padding-top: 0 !important;  /* Remove top padding on mobile */
   }
 }
 
