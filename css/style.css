@@ -146,14 +146,14 @@ a, .btn {
 
 
 .headerCol {
-  background-color: white;
+  background-color: #f8f8f8;
   padding: 18px 0;
-  position: fixed;
+  position: relative;
   z-index: 1000;
   left: 0;
   right: 0;
   top: 0;
-  visibility: visible !important;
+  margin-bottom: 40px;
 }
 .fixedHeader .headerCol {
 	padding: 10px 0;
@@ -270,7 +270,7 @@ a, .btn {
 
 /* banner section */
 .bannerSection {
-	padding: 180px 0 80px;
+	padding: 40px 0 50px;
 }
 .bannerUserImg {
   margin-left: 30px;
@@ -681,7 +681,7 @@ body.navToggleActive {
   	height: 180px;
   }
   .bannerSection {
-  	padding: 120px 0 50px;
+  	padding: 20px 0 30px;
   }
   .tImgCol {
   	margin-right: 0;
@@ -731,6 +731,10 @@ body.navToggleActive {
   }
   .fixedHeader .headerCol,  .headerCol {
   	padding: 10px 0;
+  }
+  .headerCol {
+    padding: 10px 0;
+    margin-bottom: 20px;
   }
   .headerCol {
     visibility: visible !important;
