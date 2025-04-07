@@ -1078,7 +1078,7 @@ input[type=text], input[type=email], select, textarea {
 
 /* Back arrow styles */
 .backArrow {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   font-size: 24px;
