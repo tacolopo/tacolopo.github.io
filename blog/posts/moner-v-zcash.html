@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monero v. Zcash: Who Has the Better Privacy?</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      .blogPost {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .blogContent {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+      }
+      .blogMeta {
+        color: #666;
+        margin: 1rem 0 2rem;
+      }
+      .blogImage {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="headerCol">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="../../index.html">Anthony Rosa</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Blog</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Blog Post -->
+    <article class="blogPost">
+      <div style="position: relative; z-index: 1;">
+        <h1 class="xlTitle">Monero v. Zcash: Who Has the Better Privacy?</h1>
+      </div>
+      
+      <div class="blogImage">
+        <img src="../../images/moncash.png" alt="Monero and Zcash battle!" class="img-fluid">
+      </div>
+
+      <div class="blogMeta">
+        <span class="date">March 10, 2024</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+
+      <div class="blogContent">
+        <h2>Introduction</h2>
+        <p>This is an often discussed issue in the privacy community. Monero is viewed as the darknet darling whereas Zcash gets the reputation as the project who bent the knee to exchanges. There is truth to this. Monero absolutely was the dominant darknet currency, though <a href="https://holder.io/news/darknet-markets-bitcoin-monero-binance/">>Bitcoin is regaining dominance</a>, and Zcash did alter its protocol to support exchange deposits coming <a href="https://forum.zcashcommunity.com/t/binance-rejecting-deposits-from-zcash-shielded-addresses/47667/8">from a transparent source.</a></p>
+        <p><b>Regardless, Zcash shielded transactions provide better privacy than Monero.</b> Perhaps you’re surprised by the blunt nature of the comment, and the intentional lack of nuance. But, it’s the truth.</p>
+        <p>Monero ultimately relies on obfuscating senders through ring signatures, whereas Zcash implements full encryption through zk-SNARKs. Monero has proven de-obfuscation vulnerabilities, such as the Maximum A Postieri (MAP) Decoder attack, which <a href="https://duke.hush.is/memos/6/">reduces the effective ring set to 4.2</a>, and the Black Marble flooding incident, which may have <a href="https://github.com/Rucknium/misc-research/blob/main/Monero-Black-Marble-Flood/pdf/monero-black-marble-flood.pdf">reduced the effective ring set to 5.5</a>. Combined, these vulnerabilities may have an astonishingly weak <a href="https://duke.hush.is/memos/7/">“effective ring size of 1.3.”</a></p>
+        <p>I’m a long time user of Monero. I love Monero. Monero’s privacy will improve with <a href="https://www.getmonero.org/2024/04/27/fcmps.html">FCMP++</a>. Monero does have advantages over Zcash, such as having no transparent tokens (which removes the attack vector of correlating transparent and shielded funds), <a href="https://www.getmonero.org/2020/04/18/dandelion-implemented.html?utm_source=chatgpt.com">network-level protections</a>, a more <a href="https://monerica.com/">robust peer-to-peer market</a>, and more <a href="https://kycnot.me/?t=&q=&xmr=on">no-KYC acquisition options</a>.</p>
+        <p>However, these attributes cannot make up for the current state of Monero’s small ring set, <em>without the accounting for the recent issues</em>. Zcash shielded transactions are protected by sound cryptography immune to statistical heuristics, with no known cryptographic vulnerabilities or practical deanonymization attacks. The choice is clear, Zcash has better privacy.</p>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png"></a></li>
+            <li><a href="https://gitlab.com/anthonyrosa"><img src="../../images/gitlab.png"></a></li>
+            <li><a href="https://crypticrisk.com"><img src="../../images/crypticrisk.png"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html> 
