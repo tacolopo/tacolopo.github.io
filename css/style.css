@@ -1070,3 +1070,47 @@ input[type=text], input[type=email], select, textarea {
 .blogContent div {
   background-color: #f8f8f8;
 }
+
+/* Hide navbar on blog posts */
+.blogPost .headerCol {
+  display: none;
+}
+
+/* Back arrow styles */
+.backArrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  color: black;
+  text-decoration: none;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.backArrow:hover {
+  color: blue;
+}
+
+.backArrow::before {
+  content: "←";
+  font-size: 28px;
+}
+
+@media (max-width: 767px) {
+  .backArrow {
+    top: 15px;
+    left: 15px;
+    font-size: 20px;
+  }
+  
+  .backArrow::before {
+    font-size: 24px;
+  }
+  
+  .blogPost {
+    padding-top: 60px !important;
+  }
+}
