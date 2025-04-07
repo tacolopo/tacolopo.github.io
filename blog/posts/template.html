@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{TITLE}} - Anthony Rosa</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      .blogPost {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .blogContent {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+      }
+      .blogMeta {
+        color: #666;
+        margin: 1rem 0 2rem;
+      }
+      .blogImage {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="headerCol">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="../../index.html">Anthony Rosa</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Blog</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Blog Post -->
+    <article class="blogPost">
+      <h1>{{TITLE}}</h1>
+      <div class="blogMeta">
+        <span class="date">{{DATE}}</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+      <div class="blogContent">
+        {{CONTENT}}
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png"></a></li>
+            <li><a href="https://gitlab.com/anthonyrosa"><img src="../../images/gitlab.png"></a></li>
+            <li><a href="https://crypticrisk.com"><img src="../../images/crypticrisk.png"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html> 
