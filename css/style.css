@@ -1097,10 +1097,27 @@ input[type=text], input[type=email], select, textarea {
   text-decoration: none;
 }
 
+/* Add space between title and top of screen */
+.blogPost {
+  margin-top: 30px;
+}
+
+.blogPost .xlTitle {
+  margin-top: 40px;
+}
+
+/* Media queries for mobile adjustments */
 @media (max-width: 767px) {
   .backArrow {
+    position: absolute; /* Not fixed on mobile */
     top: 15px;
     left: 15px;
-    font-size: 28px;
+    font-size: 36px; /* Larger on mobile */
+  }
+  
+  /* Smaller title on mobile */
+  .blogPost .xlTitle {
+    font-size: 32px;
+    margin-top: 60px; /* More space on mobile */
   }
 }
