@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Increase Red Hat Enterprise Linux Hashing Rounds</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      body { padding-top: 0; }
+      .blogPost { padding-top: 20px !important; }
+      .blogPost {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .blogContent {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+      }
+      .blogMeta {
+        color: #666;
+        margin: 1rem 0 2rem;
+      }
+      .blogImage {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html" class="backArrow">←</a>
+    
+    <article class="blogPost">
+      <div style="position: relative; z-index: 1;">
+        <h1 class="xlTitle">Increase Red Hat Enterprise Linux Hashing Rounds</h1>
+      </div>
+      
+      <div class="blogImage">
+        <img src="../../images/disa.png" alt="Monero and Zcash battle!" class="img-fluid">
+      </div>
+
+      <div class="blogMeta">
+        <span class="date">March 31, 2024</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+
+      <div class="blogContent">
+        <h2>Bottom Line Up Front (BLUF):</h2>
+        <p>The STIG requirement for RHEL hashing rounds is outdated and insecure. Depending on the variant used, the minimum hashing rounds should be set to at least 210,000. If performance is absolutely critical, increase the hashing rounds to as high as feasibly possible.</p>
+        <h2>What are STIGs?</h2>
+        <p>Security Technical Implementation Guides (STIGs) are hardening guides released by the Defense Information Systems Agency (DISA), "a U.S. Department of Defense combat support agency" (DISA, n.d.). STIGs are commonly used security benchmarks across the cybersecurity industry and are integrated into automated tools such as Tenable's compliance scans and SCAP Compliance Checker. Consequently, STIGs are extremely important documents. Since scanners return binary "fail" or "pass" values, and cybersecurity analysts rate compliance based on these returned values, and IT teams create system baselines off of these documents, the specific recommendations are quite relevant! If the STIG check is looking for a minimum of 24 character passwords, it does not matter that 50 character passwords are stronger, since what is checked is the STIG requirement of 24.</p>
+        <h2>What are hashing rounds?</h2>
+        <p>Hashing rounds (DISA's terminology), also known as hashing iterations, refer to how many times a salted password is run through a hashing algorithm before it is stored. For example, 3 hashing rounds of SHA-512 looks like this:</p>
+        <pre><code>SHA-512(SHA-512(SHA-512(salt + password)))</code></pre>
+        <p>This means that if the minimum hashing rounds is set to 5,000, the salted password is hashed 5,000 times before it is stored.</p>
+        <h2>The problem with DISA's recommendation:</h2>
+        <p>RHEL-08–010130 states that "If only one of 'SHA_CRYPT_MIN_ROUNDS' or 'SHA_CRYPT_MAX_ROUNDS' is set, and this value is below '5000', this is a finding." According to the login.defs manpage, 5,000 "is orders of magnitude too low for modern hardware" (login.defs(5), n.d.).</p>
+        <p>5,000 hash rounds is also no longer the industry standard. For example, the LastPass password manager implemented a 5,000 minimum iteration count in 2013 and increased it to 100,100 in 2018. When LastPass was breached, many password files were left on 5,000 hashing rounds, contributing to potential successful password cracking (Krebs, 2023). While password managers obviously can sacrifice speed for security, even old systems can hash 65,536 rounds in less than a second (SHA hashes, 2024). For the PBKDF2-HMAC algorithm, OWASP recommends 210,000, 600,000, and 1,300,000 rounds depending on the variant (OWASP, 2021).</p>
+        <p>Steve Gibson is a programmer and security researcher who runs Gibson Research Corporation. He recommends increasing the count as high as possible, and for sensitive applications "set it to a million" (Gibson, 2023, p. 15). The time required to complete a PBKDF2 cycle is a linear function of the iteration count, so increasing the hashing rounds from 5,000 to 210,000 will take 42 times longer to brute force.</p>
+        <p>If you work in cybersecurity, recommend your organization increase its minimum hashing rounds above the STIG requirement!</p>
+        <h2>What have I done about this?</h2>
+        <p>I have contacted the DISA STIG support team who responded "the evidence you have presented suggests that this minimum could be raised for this requirement" and that an update may occur in a future release of the STIG.</p>
+        <h2>Update Log</h2>
+        <p>April 5, 2024: I contacted Red Hat Customer Service.</p>
+        <p>April 17, 2024: I forwarded the notice to secalert@redhat.com.</p>
+        <p>May 23, 2024: After some email communication with the Red Hat compliance team, I submitted a merge request to make this change in the CentOS Stream. Merge request <a href="https://gitlab.com/redhat/centos-stream/rpms/shadow-utils/-/merge_requests/22">here</a>.</p>
+        <p>May 30, 2024: Pipeline job is <a href="https://gitlab.com/redhat/centos-stream/rpms/shadow-utils/-/jobs/6976680498">failing</a> because there is no RHEL Jira ticket. The linked RHEL ticket is insufficient. I do not have access to the <a href="https://docs.engineering.redhat.com/pages/viewpage.action?spaceKey=EXDSPRHELB&title=Managing+dist-git+policy">link referenced in the job</a>. Emailed <a href="https://gitlab.com/ipedrosa">Iker Pedrosa</a> to see if there's any path forward to getting a ticket made.</p>
+        <p>June 5, 2024: I created the Jira ticket for the issue and linked to it in the original merge request. I also sent Iker Pedrosa an email to inform him. <a href="https://issues.redhat.com/browse/RHEL-40195">RHEL-40195</a>.</p>
+        <p>July 3, 2024: The merge request was <a href="https://gitlab.com/redhat/centos-stream/rpms/shadow-utils/-/merge_requests/22">approved</a>!</p>
+        <p>November 12, 2024: The update was <a href="https://access.redhat.com/errata/RHBA-2024:9389">pushed out for RHEL 9</a>!</p>
+        <p>January 6, 2025: I contacted DISA again to see if the minimum hashing round requirement could be updated in light of Red Hat increasing RHEL 9's default iteration count.</p>
+        <p>January 7, 2025: DISA responded that the RHEL 8 and RHEL 9 STIGs will be updated to reflect the hashing rounds increase and "look for that publication later this month".</p>
+        <p>Janury 28, 2025: DISA released <a href="https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RHEL_9_V2R3_STIG.zip">Version 2, Release 3</a> of the Red Hat Enterprise Linux 9 STIG with the updated requirement.</p>
+        <h2>References</h2>
+        <p>DISA. (n.d.). Our work. DISA. Retrieved March 31, 2024, from https://disa.mil/About/Our-Work <br>Gibson, S. (2023, January 3). Leaving LastPass. Gibson Research Corporation. https://www.grc.com/sn/sn-904.htm <br>Krebs, B. (2023, September 5). Experts fear crooks are cracking keys stolen in LastPass breach. KrebsonSecurity. https://krebsonsecurity.com/2023/09/experts-fear-crooks-are-cracking-keys-stolen-in-lastpass-breach/ <br>login.defs(5). (n.d.). Man7.org. Retrieved March 31, 2024, from https://www.man7.org/linux/man-pages/man5/login.defs.5.html <br>OWASP. (2021). Password storage. OWASP Cheat Sheet Series. https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html <br>SHA hashes. (2024, March 16). ArchWiki. https://wiki.archlinux.org/title/SHA_password_hashes</p>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png"></a></li>
+            <li><a href="https://gitlab.com/anthonyrosa"><img src="../../images/gitlab.png"></a></li>
+            <li><a href="https://crypticrisk.com"><img src="../../images/crypticrisk.png"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html> 
