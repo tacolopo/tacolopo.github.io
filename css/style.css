@@ -832,8 +832,22 @@ input[type=text], input[type=email], select, textarea {
 }
 
 .blogContent p {
-  color: #fff;
-  margin-bottom: 1.5rem;
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Add blockquote styling */
+.blogContent blockquote {
+  font-style: italic;
+  margin: 20px 40px;
+  padding: 0 20px;
+  border-left: 4px solid var(--primaryColor);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.blogContent blockquote p {
+  margin: 15px 0;
 }
 
 /* Update image spacing */
