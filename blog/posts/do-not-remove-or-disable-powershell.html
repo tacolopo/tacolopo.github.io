@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Do Not Remove or Disable PowerShell</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      body { padding-top: 0; }
+      .blogPost { padding-top: 20px !important; }
+      .blogPost {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .blogContent {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+      }
+      .blogMeta {
+        color: #666;
+        margin: 1rem 0 2rem;
+      }
+      .blogImage {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html" class="backArrow">←</a>
+    
+    <article class="blogPost">
+      <div style="position: relative; z-index: 1;">
+        <h1 class="xlTitle">Do Not Remove or Disable PowerShell</h1>
+      </div>
+      
+      <div class="blogImage">
+        <img src="../../images/powershell.png" alt="PowerShell" class="img-fluid">
+      </div>
+
+      <div class="blogMeta">
+        <span class="date">May 25, 2024</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+
+      <div class="blogContent">
+        <h2>Bottom Line Up Front (BLUF):</h2>
+        <p>Whenever I hear about removing PowerShell from a Windows environment I think back to the classic animated film <em>The Road to El Dorado</em> when Miguel and the Chief discuss the impending Spanish invasion:</p>
+        <p><b>Miguel</b>: Chief, you cannot fight them!<br><b>Chief</b>: Then how can we stop them? <br><b>Miguel</b>: We can't.</p>
+        <p>PowerShell is a powerful tool often used by hackers, but the truth is we can't remove it, and we shouldn't try to.</p>
+        <h2>Background</h2>
+        <p>PowerShell is a Microsoft task automation and configuration management solution comprised of a command-line shell, an object-oriented capable scripting language, and the Desired State Configuration (DSC) Framework. The command-line shell is unique as it returns .NET objects, enabling object-oriented programming through the scripting language. DSC is the configuration management solution enabling infrastructure management with configuration as code. With the release of PowerShell 7.2, the PowerShell DSC module is no longer included in the PowerShell package, and is now an independent module.</p>
+        <p>PowerShell comes in two types: Windows PowerShell and PowerShell. Windows PowerShell is based on the .NET Framework and only runs in Windows. Its latest version is 5.1 and Microsoft is no longer updating it with new features. PowerShell is built on .NET core, which allows it to run on Mac and Linux operating systems (OS). There are many differences between Windows PowerShell and PowerShell, including their cmdlets, modules, and executable names. Windows PowerShell is the version that ships by default in Windows products and henceforth "PowerShell" will refer to Windows PowerShell. PowerShell is most commonly invoked by a user through the powershell.exe executable; however, PowerShell is really a series of dynamic-link libraries (DLL) integral to the OS.</p>
+        <h2>Risks</h2>
+        <p>PowerShell is commonly used by hackers and cybercriminals. Since it is a legitimate program already present on a Windows system, no additional tooling is necessary to exploit PowerShell vulnerabilities. As an interpreted language, PowerShell functions as both a scripting and object-oriented programming language. PowerShell's control over filesystems and the Windows Registry, and its ability to send trusted commands through a network, makes it an extremely powerful tool and a prime target for threat actors.</p>
+        <p>Research from Splunk demonstrated that among adversaries that breached a system, hackers started the PowerShell command-line shell 28.63% of the time in 2020, 40.8% of the time in 2021, and 29.4% of the time in 2022 (Fetterman, 2022). The most common malicious actions involving PowerShell are communicating with C2 servers, extracting login credentials from servers, moving laterally within a network, executing fileless malware, and modifying or deleting files and registry keys (Reed, 2023).</p>
+        <p>While PowerShell is commonly invoked during an attack, it is rarely used during the exploitation phase. Lee Holmes, the former Lead Security Architect for Azure Management and one of the original developers on the PowerShell Team, noted that among observed attacks in 2017, the attack always began with an infected or malicious file and "it never started with PowerShell...the danger of of the PowerShell attack is never the PowerShell attack, it's just that people are using it for post-compromise activities. They've already got code execution on a system that can do anything that you can do in Windows" (Holmes, 2018, 7:00).</p>
+        <p>This is likely still the case, and Verizon's 2023 Data Breach Investigation Report did not include PowerShell as a top method of intrustion; rather, it highlighted malicious emails, infected Office documents, and Remote Desktop Protocol (Verizon, 2023, p. 24–29). Clearly, the presence of PowerShell presents risk to environments. However, the problem is not resolved by attempting to remove or disable PowerShell.</p>
+        <h2>Remove or Disable?</h2>
+        <p>While it is simple to remove the PowerShell executable, this does not actually remove PowerShell from the system. PowerShell can still be run through DLLs, and as an integral component to the OS, attempting to remove these DLLs can corrupt the OS.</p>
+        <p>Attempting to disable PowerShell is more so a cosmetic performance than an effective security policy. "Disabling PowerShell" only blocks the executable, it does not actually prevent a user from using PowerShell. In fact, "everything that has PowerShell support is hosting the PowerShell engine" (Holmes, 2018, 10:40). PowerShell scripts and commands can also be run "by loading the underlying System.Management.Automation namespace, exposed through the .NET Framework and Windows Common Language Interface" eliminating any need for the PowerShell executable (Stetty, 2021).</p>
+        <p>Neither does modifying the execution policy truly disable PowerShell: "Contrary to popular belief, the execution policy in PowerShell is not a security boundary. It's designed to prevent a user from unknowingly running a script. A determined user can easily bypass the execution policy in PowerShell" (Robbins, 2022).</p>
+        <blockquote>
+          <p><b>Client systems.</b> After initial infection (by a macro-enabled document or user double-clicking a malicious executable), malware sometimes uses PowerShell as one component of its attack chain. Microsoft's recommendation is not to block PowerShell completely, as PowerShell is required for many operating system and system management tasks. Microsoft's recommendation is to limit PowerShell to authorized users and administrators to mitigate the use by commodity malware, as described by point #4 above ("Deploy Device Guard / Application Control Policies"). If Windows Defender Application Control is not an option, security products that block PowerShell from unknown parent processes (such as Word, Excel) are a reasonable middle ground.</p>
+          <p><b>Server systems.</b> Microsoft does not recommend blocking PowerShell on server systems. PowerShell is the most secure remote management technology, and disabling PowerShell exposes the server to significant risks of credential theft enabled by other remote management technologies (such as Remote Desktop). PowerShell is also the primary management technology for server systems, so blocking PowerShell completely causes an unacceptable administrative burden using tools with little to no security transparency. Additionally, malicious post-exploitation use of PowerShell on a server system is primarily associated with an active adversary, rather than the static approach used by commodity malware on client systems. Without Application Control (as described by point #4 above), active adversaries simply use other scripting languages or custom tooling. (PowerShell Team, 2020)</p>
+        </blockquote>
+        <p>Cybersecurity authorities from the United States, United Kingdom, and New Zealand also "recommend proper configuration and monitoring of PowerShell, as opposed to removing or disabling PowerShell entirely" (CISA, 2022, p. 1). The joint report from the NSA, CISA, NZ NCSC, and NCSC-UK states:</p>
+        <blockquote>
+          <p>PowerShell is essential to secure the Windows operating system, especially since newer versions have resolved previous limitations and concerns through updates and enhancements. Removing or improperly restricting PowerShell would prevent administrators and defenders from utilizing PowerShell to assist with system maintenance, forensics, automation, and security. PowerShell, along with its administrative abilities and security measures, should be managed properly and adopted. (CISA, 2022, p. 5)</p>
+        </blockquote>
+        <p>To truly remove or disable PowerShell requires extreme changes to the OS which are not recommended.</p>
+        <h2>Recommended Actions</h2>
+        <ol>
+          <li><b>Uninstall the Windows PowerShell 2.0 Engine.</b> PowerShell 2.0 is deprecated and lacks security features present in PowerShell 5.X, such as enhanced transcription logging and Antimalware Scan Interface Protection (Aiello, 2017).</li>
+          <li><b>Use a GPO to enable Script Execution and select “Allow only signed scripts.”</b> This setting is recommended by the Center for Internet Security (CIS) and will override the execution policies set in PowerShell (CIS, n.d.). While threat actors can spoof signatures, the policy provides a thin layer of protection with minimal downside for administrators.</li>
+          <li><b>Use AppLocker to force PowerShell to use Constrained Language Mode.</b> Constrained language mode “restrict[s] access to sensitive language elements that can be used to invoke arbitrary Windows APIs” (PowerShell Team, 2018). This policy must be tested before implementation to determine operational effects.</li>
+          <li><b>Create a Script Rules policy.</b> AppLocker can also be used “to create an allow rule only for a specific folder,” preventing arbitrary file execution outside the specified path (Gates, 2022).</li>
+          <li><b>Use PowerShell Remoting to manage systems.</b> hen remote connections are needed, “PowerShell Remoting is the recommended way to manage Windows systems” (Wheeler et al, 2023). PowerShell Remoting uses Kerberos or NTLM authentication and “these authentication protocols do not send the actual credentials to remote hosts, avoiding direct exposure of credentials and risk of theft through revealed credentials” (CISA, 2022, p. 2). If implemented, the Windows Firewall rule should restrict connections to “trusted endpoints…to reduce lateral movement opportunities” (CISA, 2022, p. 3).</li>
+          <li><b>Log all PowerShell activities.</b> As storage permits, all PowerShell activities should be recorded with an emphasis on Deep Script Block Logging and module logging, which record “even hidden malicious PowerShell activities and the commands that are executed, such as command invocations, and portions of scripts” (CISA, 2022, p. 4).</li>
+        </ol>
+        <h2>Summary</h2>
+        <p>PowerShell is a core component to the Windows OS and there is no safe way to remove it. Disabling PowerShell through settings prevents the invocation of the executable, but does not prevent invocation from alternative entry points. Instead, PowerShell should be hardened and monitored.</p>
+        <h2>References</h2>
+        <p>Aiello, J. (2017, August 24). <em>Windows PowerShell 2.0 deprecation</em>. PowerShell Team. <a href="https://devblogs.microsoft.com/powershell/windows-powershell-2-0-deprecation/">https://devblogs.microsoft.com/powershell/windows-powershell-2-0-deprecation/</a> <br>CIS. (n.d.). <em>Intel insights: How to secure PowerShell</em>. Center for Internet Security. <a href="https://www.cisecurity.org/insights/white-papers/intel-insights-how-to-secure-powershell">https://www.cisecurity.org/insights/white-papers/intel-insights-how-to-secure-powershell</a> <br>CISA. (2022, June 22). <em>Keeping PowerShell: Security measures to use and embrace</em>. <a href="https://media.defense.gov/2022/Jun/22/2003021689/-1/-1/1/CSI_KEEPING_POWERSHELL_SECURITY_MEASURES_TO_USE_AND_EMBRACE_20220622.PDF">https://media.defense.gov/2022/Jun/22/2003021689/-1/-1/1/CSI_KEEPING_POWERSHELL_SECURITY_MEASURES_TO_USE_AND_EMBRACE_20220622.PDF</a> <br>Fetterman, R. (2022, December 14). <em>Zoom. Enhance!: Finding value in macro-level ATT&CK reporting</em>. Splunk. <a href="https://www.splunk.com/en_us/blog/security/zoom-enhance-finding-value-in-macro-level-att-ck-reporting.html">https://www.splunk.com/en_us/blog/security/zoom-enhance-finding-value-in-macro-level-att-ck-reporting.html</a> <br>Gates, J. (2022, June 22). <em>Why to harden PowerShell and not remove it entirely</em>. CalCom. <a href="https://www.calcomsoftware.com/mitigating-powershell-attacks/">https://www.calcomsoftware.com/mitigating-powershell-attacks/</a> <br>Holmes, L. (2018, May 2). <em>Defending against PowerShell attacks — In theory, and in practice by Lee Holmes</em>. PowerShell.org in YouTube. <a href="https://www.youtube.com/watch?v=M5bkHUQy-JA">https://www.youtube.com/watch?v=M5bkHUQy-JA</a> <br>PowerShell Team. (2020, February 20). <em>Defending against PowerShell attacks</em>. Microsoft. <a href="https://devblogs.microsoft.com/powershell/defending-against-powershell-attacks/">https://devblogs.microsoft.com/powershell/defending-against-powershell-attacks/</a> <br>PowerShell Team. (2018, May 17). <em>PowerShell constrained langauge mode</em>. Microsoft. <a href="https://devblogs.microsoft.com/powershell/powershell-constrained-language-mode/">https://devblogs.microsoft.com/powershell/powershell-constrained-language-mode/</a> <br>Reed, J. (2023, June 26). <em>All about PowerShell attacks: The no. 1 ATT&CK technique</em>. SecurityIntelligence. <a href="https://securityintelligence.com/articles/all-about-powershell-attacks/">https://securityintelligence.com/articles/all-about-powershell-attacks/</a> <br>Robbins, M. (2022, November 17). <em>Getting started with PowerShell</em>. Microsoft Learn. <a href="https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.4">https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.4</a> <br>Stetty, S., & Meyer, A. (2021, February 9). <em>Stopping “PowerShell without PowerShell” attacks</em>. Palo Alto Networks Blog. <a href="https://www.paloaltonetworks.com/blog/security-operations/stopping-powershell-without-powershell/">https://www.paloaltonetworks.com/blog/security-operations/stopping-powershell-without-powershell/</a> <br>Verizon. (2023). <em>2023 Data breach investigation report (DBIR)</em>. Verizon Enterprise Solutions. <a href="https://www.verizon.com/business/resources/T348/reports/2023-data-breach-investigations-report-dbir.pdf">https://www.verizon.com/business/resources/T348/reports/2023-data-breach-investigations-report-dbir.pdf</a> <br>Wheeler, S., Wilson, C., & Schonning, N. (2023, October 23). <em>Security considerations for PowerShell Remoting using WinRM</em>. Microsoft Learn. <a href="https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/winrm-security?view=powershell-7.4">https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/winrm-security?view=powershell-7.4</a></p>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png"></a></li>
+            <li><a href="https://gitlab.com/anthonyrosa"><img src="../../images/gitlab.png"></a></li>
+            <li><a href="https://crypticrisk.com"><img src="../../images/crypticrisk.png"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html> 
