@@ -842,7 +842,7 @@ input[type=text], input[type=email], select, textarea {
   font-style: italic;
   margin: 20px 40px;
   padding: 0 20px;
-  border-left: 4px solid var(--primaryColor);
+  border-left: 4px solid #057eff;
   background-color: rgba(0, 0, 0, 0.02);
 }
 

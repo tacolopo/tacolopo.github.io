@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PowerShell Snippets to Monitor</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      body { padding-top: 0; }
+      .blogPost { padding-top: 20px !important; }
+      .blogPost {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .blogContent {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+      }
+      .blogMeta {
+        color: #666;
+        margin: 1rem 0 2rem;
+      }
+      .blogImage {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html" class="backArrow">←</a>
+    
+    <article class="blogPost">
+      <div style="position: relative; z-index: 1;">
+        <h1 class="xlTitle">PowerShell Snippets to Monitor</h1>
+      </div>
+      
+      <div class="blogImage">
+        <img src="../../images/inspection.png" alt="An inspector with a magnifying glass." class="img-fluid">
+      </div>
+
+      <div class="blogMeta">
+        <span class="date">March 24, 2025</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+
+      <div class="blogContent">
+        <h2>Introduction</h2>
+        <p>PowerShell is both a friend and a foe to blue-teamers. PowerShell Remoting is the most secure way to manage systems, PowerShell is a stellar productivity tool, and it is essentially uninstallable anyways. However, as a native, powerful scripting platform, PowerShell can be used to support malicious actions. Therefore, it is important to adequately monitor.</p>
+        <p>Below are PowerShell snippets you should pay special attention to and set up alerts for. Now, you might be wondering why I didn’t include popular PowerShell modules like Invoke-Obfuscation. The reason is because when researchers tested these modules, they found that they do not bypass detection (Mosch, 2025).</p>
+        <p>In fact, “all of the public bypasses themselves are signatured and flagged by AMSI itself, at least when implementing them in one of the mentioned scripting languages such as Powershell. So for all of them, it’s necessary to manually modify or obfuscate the code so that the bypass itself is no longer flagged” (Mosch, 2025).</p>
+        <p>Therefore, the snippets I listed are more general and usually included in other malicious scripts. They are simple, non-regex based items, and thus implementable in all environments without requiring customization.</p>
+        <h2>Snippets</h2>
+        <ul>
+            <li><b>Set-MpPreference -DisableRealtimeMonitoring</b> (Rousseau, 2017, p. 6). Real time protection provides “always-on scanning, using file and process behavior monitoring and other heuristics” (Davis et al., 2025). Disabling this is indicative of trying to bypass antivirus protections. It is possible your organization would use this in testing, but it is unlikely, unnecessary, and should be monitored regardless.</li>
+            <li><b>Set-MpPreference -DisableScriptScanning</b> (Microsoft, 2025-b). This setting “specifies whether to disable the scanning of scripts during malware scans. If you specify a value of $False or do not specify a value, Windows Defender does not scan scripts” (Microsoft, 2025-b). Not good!</li>
+            <li><b>AddMpPreference -ExclusionPath</b> (Zahravi, 2025). The exclusion path “disables Windows Defender scheduled and real-time scanning for files in this folder” (Microsoft, 2025-a). If you’re using Defender, and managing rules through PowerShell, this may be legitimately used. However, it absolutely should be monitored, as it is often used in attack chains, as the Zahravi reference demonstrates. If you see this command, and there’s no approved change occurring, this is a major red flag!</li>
+            <li><b>Remove-Item -Path $MyInvocation.MyCommand.Source</b> (Maynard, 2018). This deletes the script after it executes, making file detection and analysis more difficult. There is no reason your organization should permit this action.</li>
+            <li><b>New-Object System.Net.Sockets.TCPClient.</b> This code establishes a TCP connection through PowerShell and can be used to communicate back to a malicious server. This can be legitimately used by the organization, but should be monitored for IPs outside of a whitelist.</li>
+            <p><b>-ExecutionPolicy Bypass</b> (Y.D., 2024). Execution policies in PowerShell are easily bypassed, and thus should not be considered a security boundary. They moreso function as a barrier against accidental execution to help employees comply with policy. With that being said, bypassing the execution policy is indicative of an insider (malicious or not) or external threat.</p>
+            <p><b>System.Reflection.Assembly</b> (Splunk, 2021). Fileless malware is a common technique to avoid antivirus solutions. This snippet is a potential indicator of in-memory (fileless) malware designed to avoid detection on disk.</p>
+            <h2>References</h2>
+            <p>Davis, C., Walsh, E., Mandalika, S., & Athavale, M. (2025, March 26). <em>Configure behavioral, heuristic, and real-time protection</em>. Microsoft Learn. <a href="https://learn.microsoft.com/en-us/defender-endpoint/configure-protection-features-microsoft-defender-antivirus">https://learn.microsoft.com/en-us/defender-endpoint/configure-protection-features-microsoft-defender-antivirus</a> <br>Maynard, T. (2018, September 9). <em>Self-destruction script</em>. Tommy Maynard. <a href="https://tommymaynard.com/self-destruction-script-2018/">https://tommymaynard.com/self-destruction-script-2018/</a> <br>Microsoft. (2025-a). <em>Add-MpPreference</em>. Microsoft Learn. <a href="https://learn.microsoft.com/en-us/powershell/module/defender/add-mppreference?view=windowsserver2025-ps">https://learn.microsoft.com/en-us/powershell/module/defender/add-mppreference?view=windowsserver2025-ps</a> <br>Microsoft. (2025-b). <em>Set-MpPreference</em>. Microsoft Learn. <a href="https://learn.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2025-ps">https://learn.microsoft.com/en-us/powershell/module/defender/set-mppreference?view=windowsserver2025-ps</a> <br>Mosch, F. (2025, February). <em>Bypass AMSI in 2025</em>. rtec. <a href="https://www.r-tec.net/r-tec-blog-bypass-amsi-in-2025.html">https://www.r-tec.net/r-tec-blog-bypass-amsi-in-2025.html</a> <br>Rousseau, A. (2017). <em>Hijacking .NET to defend PowerShell/em>. Retrieved June 23, 2024, from <a href="https://arxiv.org/pdf/1709.07508">https://arxiv.org/pdf/1709.07508</a> <br>Splunk (2021, September 17). <em>Hunting for malicious PowerShell using script block logging</em>. <a href="https://www.splunk.com/en_us/blog/security/hunting-for-malicious-powershell-using-script-block-logging.html#:~:text=Defense%20Evasion">https://www.splunk.com/en_us/blog/security/hunting-for-malicious-powershell-using-script-block-logging.html#:~:text=Defense%20Evasion</a> <br>Y. D. (2024, April 15). <em>Bypass and set PowerShell script execution policies</em>. Sentry. <a href="https://sentry.io/answers/bypass-and-set-powershell-script-execution-policies/">https://sentry.io/answers/bypass-and-set-powershell-script-execution-policies/</a> <br>Zahravi, A. (2025, March 25). <em>CVE-2025–26633: How Water Gamayun weaponizes MUIPath using MSC EvilTwin</em>. TrendMicro. <a href="https://www.trendmicro.com/en_us/research/25/c/cve-2025-26633-water-gamayun.html">https://www.trendmicro.com/en_us/research/25/c/cve-2025-26633-water-gamayun.html</a></p>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png"></a></li>
+            <li><a href="https://gitlab.com/anthonyrosa"><img src="../../images/gitlab.png"></a></li>
+            <li><a href="https://crypticrisk.com"><img src="../../images/crypticrisk.png"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html> 
