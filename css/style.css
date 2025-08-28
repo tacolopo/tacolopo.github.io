@@ -412,7 +412,6 @@ a, .btn {
   height: 184px;
   -o-object-fit: cover;
   object-fit: cover;
-  object-position: center top;
 }
 .portfolioCard {
   padding: 20px 0;
