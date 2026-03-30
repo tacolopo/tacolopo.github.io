@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HIPHIL Novum: The AI Slop Journal</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="HIPHIL Novum published Beijen and de Heide's AI slop study on the Pauline letters, declined a critique exposing its flaws, and their peer reviewer doesn't understand overfitting.">
+    <meta name="keywords" content="HIPHIL Novum, AI slop, Beijen, de Heide, Pauline letters, BiLSTM, peer review, overfitting, deep learning, stylometry, biblical studies">
+    <meta name="author" content="Anthony Rosa">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="HIPHIL Novum: The AI Slop Journal">
+    <meta property="og:description" content="HIPHIL Novum published Beijen and de Heide's AI slop study on the Pauline letters, declined a critique exposing its flaws, and their peer reviewer doesn't understand overfitting.">
+    <meta property="og:image" content="../../images/hiphilnovum.png">
+    <meta property="og:type" content="article">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HIPHIL Novum: The AI Slop Journal">
+    <meta name="twitter:description" content="HIPHIL Novum published Beijen and de Heide's AI slop study on the Pauline letters, declined a critique exposing its flaws, and their peer reviewer doesn't understand overfitting.">
+    <meta name="twitter:image" content="../../images/hiphilnovum.png">
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      body { padding-top: 0; }
+      .blogPost { padding-top: 20px !important; }
+      .blogPost {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .blogContent {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+      }
+      .blogMeta {
+        color: #666;
+        margin: 1rem 0 2rem;
+      }
+      .blogImage {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html" class="backArrow">&larr;</a>
+
+    <article class="blogPost">
+      <div style="position: relative; z-index: 1;">
+        <h1 class="xlTitle">HIPHIL Novum: The AI Slop Journal</h1>
+      </div>
+
+      <div class="blogImage">
+        <img src="../../images/hiphilnovum.png" alt="HIPHIL Novum: The AI Slop Journal" class="img-fluid">
+      </div>
+
+      <div class="blogMeta">
+        <span class="date">March 30, 2026</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+
+      <div class="blogContent">
+        <p><a href="https://hiphil.org" target="_blank">HIPHIL Novum</a> published <a href="https://doi.org/10.7146/hn.v10i1.147482" target="_blank">"Authorship Verification of the Disputed Pauline Letters through Deep Learning"</a> by Evy Beijen and Dr. Rianne de Heide in volume 10, issue 1 (2025). The study used a bidirectional long short-term memory (BiLSTM) neural network to classify 100-word chunks of text from the Pauline epistles as authentically Pauline or not. They reported 84% accuracy on their plaintext model. The code published alongside the paper is AI-generated, non-functional, and the methodology has fundamental problems that render the results unreliable. I submitted a critique to the journal. Their peer reviewer demonstrated a failure to understand basic machine learning concepts, and the journal declined to publish my response.</p>
+
+        <h2>The Paper</h2>
+
+        <p>Beijen and de Heide adopted Jordan Perry's (2021) technique of using a BiLSTM with 100-word chunks of Ancient Greek text. They trained on roughly 549 chunks from the undisputed Pauline letters and impostor documents, split 80/20 for training and testing. The plaintext model used an embedding dimension of 70 and a hidden layer size of 115. They claimed 84% accuracy on the test set and applied the trained model to the disputed Pauline letters&mdash;Titus, 1 and 2 Timothy, Ephesians, Colossians, 2 Thessalonians, and Hebrews.</p>
+
+        <h2>AI Slop Code</h2>
+
+        <p>The first and most obvious problem is the code. Beijen and de Heide's <a href="https://github.com/evybeijen/DisputedPaulineLetters" target="_blank">GitHub repository</a> contains two Python files: model_construction_and_evaluation.py and preprocessing.py. I ran both through <a href="https://www.code-detector.ai/" target="_blank">span-detect-1</a>, a machine learning classifier trained on millions of AI-generated and human-written code samples. The results: model_construction_and_evaluation.py flagged as 100% AI generated with 100% confidence for all code segments. preprocessing.py flagged as 100% AI generated with 100% confidence for two of three segments, and 84% for the remaining one.</p>
+
+        <p>The AI-generated nature is obvious to anyone who has used LLMs to write code. Comments are pervasive on trivial functions&mdash;a comment stating "Remove accentuation" above a function called remove_accentuation, "Remove punctuation" above remove_punctuation, "Convert to lowercase" above <code>.lower()</code>. The comment ratio is 56-65%, compared to the roughly 19% average in open-source libraries prior to LLMs (Arafat and Riehle 2009, 4). These are not comments written for humans. They are the hallmark of LLM output.</p>
+
+        <p>Worse, the code does not run. model_construction_and_evaluation.py contains a data holder that is never filled&mdash;just empty ellipses. There is no code for data loading, text source handling, results logging, or hyperparameter tracking. The README states the functions "have been adjusted to enhance readability, reusability, and flexibility." In other words, the published code is not the actual code used in the study. The study is completely non-reproducible, and the AI-generated code published in its place contains methodological and implementation flaws. Nowhere in the paper do the authors disclose using AI to write the code.</p>
+
+        <h2>Methodological Failures</h2>
+
+        <p><b>100-Word Chunks and Insufficient Data.</b> A BiLSTM learns by modeling dependencies across an input sequence. With only 100 tokens per sequence, there is minimal information to learn from. Even traditional statistical stylometric studies show accuracy drops significantly below 3,000-word samples (Eder 2010, 2). Neural networks amplify data requirements, not decrease them. The BiLSTM was trained on merely ~440 chunks with an embedding dimension of 61-70. The model needs to see each word in enough different contexts to push its vector into the right region of the embedding space. With this little data, that is a Herculean task. The results confirm this: Beijen and de Heide themselves acknowledge that predicted probabilities for intra-epistle chunks range "from nearly zero to nearly one" (Beijen and de Heide 2025, 33-34), meaning the model assigns wildly inconsistent scores to chunks from the same epistle. The model also performed poorly classifying 1 Peter, a known non-Pauline text, at only 42% correct on the plaintext model (Beijen and de Heide 2025, 34).</p>
+
+        <p><b>Overparameterization.</b> The parameter-to-sample ratio for the plaintext model exceeds 1,100:1 for any plausible vocabulary size, and approaches 2,000:1 for a more realistic vocabulary of ~10,000 words. Ratios above 1:1 are technically in overparameterized territory, and such extreme overparameterization with so little data makes memorization far more likely than learning. The authors themselves note "both model variants show signs of overfitting in the disparity between accuracy scores on the training and test sets" (Beijen and de Heide 2025, 34). Training accuracy was 100% while test accuracy was 84%&mdash;a 16-point gap that screams memorization, not learning.</p>
+
+        <p><b>Circular Logic.</b> The study presupposes which letters are authentically Pauline, trains on those assumptions, and then classifies the disputed letters. Whatever the model is told to recognize as authentic becomes authentic, and whatever is not <i>a priori</i> considered authentic becomes inauthentic. The study is merely reinforcing the predetermined outcome. I demonstrated this experimentally: merely adding 1 and 2 Timothy to the "authentic" corpus shifts Titus's mean authentic value from their reported 38%/50% to 73.6% &plusmn; 15.3%. The model is not identifying genuine authorial signal. It is reflecting input assumptions.</p>
+
+        <p><b>Dominance of Noise.</b> Keeping all texts identical and only varying the authentic-impostor subsampling ratio, Titus's Pauline probability ranged from 14.1% to 81.2%. Simply adjusting random seeds with the same Pauline base rate produced a 14.1% gap between runs. Training on randomized labels&mdash;following the methodology of Zhang et al. (2017, 2)&mdash;produced chaotic results with Titus ranging from 1.1% to 56.3% Pauline. Each trial memorized a different random target function. Different starting weights led to different minima in an overparameterized space, confirming the model cannot separate signal from noise.</p>
+
+        <p><b>Diacritics Removal.</b> Removing diacritical marks from texts sourced from critical editions&mdash;the <i>Society of Biblical Literature</i> and <i>Christian Classics Ethereal Library</i>, not early manuscripts&mdash;means the data matches neither the critical edition nor any actual manuscript. This decision collapses distinct word forms, reducing the available token information by nearly 40%.</p>
+
+        <p><b>KFold vs. GroupKFold.</b> The authors used standard KFold cross-validation, which randomly distributes chunks across folds. This means chunks from the same epistle can appear in both the training and test sets. Intra-epistle chunks share more contextual features than inter-epistle chunks, so the model could "recognize" familiar text rather than learning generalizable features. scikit-learn offers GroupKFold specifically so "the same group is not represented in both testing and training sets." This is a form of data leakage that inflates the reported accuracy.</p>
+
+        <h2>The Critique and the Peer Review</h2>
+
+        <p>I submitted a formal critique of Beijen and de Heide to HIPHIL Novum. After about a month, I received a response. The single reviewer recommended "Resubmit for Review." The journal, however, simply declined the submission outright.</p>
+
+        <p>To his credit, the reviewer acknowledged two strong points. On GroupKFold, he stated that "even as a professional practitioner of this field, this is something I myself may have overlooked if I were designing such a model &amp; test." He called the critique of the non-functional code "definitely worthwhile." These are the two most damning problems with the study, and the reviewer agreed with both.</p>
+
+        <p>Then the reviewer proceeded to get almost everything else wrong.</p>
+
+        <h2>The Reviewer Doesn't Understand Overfitting</h2>
+
+        <p>The reviewer's central argument in defense of Beijen and de Heide's paper is that the model achieved >80% accuracy, and therefore the critiques of the methodology "ring hollow." He writes:</p>
+
+        <blockquote>"If Beijen &amp; de Heide's model was able to identify Pauline writing with &gt;80% accuracy, how does one claim the embedding space wasn't useful? It's the backbone of a model that performed reasonably well."</blockquote>
+
+        <blockquote>"The overparameterization critique is fairly weak...I don't know what he was hoping to establish here."</blockquote>
+
+        <blockquote>"The critiques about overparameterization, noise, and hyperparameter choices ring hollow when their model ultimately performs at &gt;80% accuracy."</blockquote>
+
+        <p>This reveals a fundamental misunderstanding. The 84% accuracy figure is precisely the problem, not a defense. Beijen and de Heide's own paper reports 100% training accuracy and 84% test accuracy (Beijen and de Heide 2025, 30). The authors themselves state that "both model variants show signs of overfitting" and note "the disparity between accuracy scores on the training and test sets despite attempts to mitigate this problem through dropout regularization" (Beijen and de Heide 2025, 34). They further acknowledge that the model's difficulty correctly classifying 1 Peter, "combined with the wide range of probabilities observed for each tested letter calls for caution in interpreting its predictions regarding the disputed Pauline letters" (Beijen and de Heide 2025, 34). That is scholar speak for: our model is not reliable.</p>
+
+        <p><b>The reviewer is defending a position that the original authors themselves do not hold.</b> Beijen and de Heide acknowledge the overfitting. They acknowledge the poor generalization. They call for "caution" in interpreting their own results. Yet HIPHIL Novum's peer reviewer cites the inflated accuracy number as proof the model works&mdash;without apparently reading or understanding the paper he is defending.</p>
+
+        <p>An overfit model will appear to perform well on test data drawn from the same distribution, especially when KFold rather than GroupKFold allows epistle chunks to leak between training and test sets. The 84% figure is not evidence of a model that learned Pauline stylistic features. It is evidence of a model that memorized its training data and benefits from test-set contamination through improper cross-validation. The reviewer cannot see this because he either did not read the original paper or does not understand what overfitting means in practice.</p>
+
+        <h2>Video</h2>
+
+        <p>I made a video discussing these issues in more detail, including a walkthrough of the reviewer's errors.</p>
+
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
+          <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/QPC8mKridjk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h2>Lessons Learned</h2>
+
+        <p>Beijen and de Heide's study is erroneous. AI-generated, non-functional code was published alongside a study with fundamental methodological flaws, and a peer-reviewed journal both approved the original paper and rejected a critique of it. The reviewer acknowledged being a "professional practitioner" who would have missed the GroupKFold issue himself&mdash;while simultaneously defending the rest of the methodology he failed to scrutinize the first time around.</p>
+
+        <p>This is what happens when journals publish AI research without the technical competence to evaluate it. HIPHIL Novum is a journal for Hebrew and Greek linguistics. There is nothing wrong with that mission. But if they are going to publish computational studies using neural networks, they need reviewers who understand neural networks. They clearly do not have them.</p>
+
+        <p>The broader problem is AI slop infiltrating peer-reviewed research. People will read Beijen and de Heide's paper and think there is now objective AI evidence about the authorship of Paul's letters. There is not. There is a fundamentally flawed study, published by a journal that cannot evaluate it, defended by a reviewer who does not understand it. As Bruce Schneier recently <a href="https://www.schneier.com/" target="_blank">highlighted</a>, we are approaching a crisis point where people realize there is nothing online they can trust. AI slop in peer-reviewed academic research&mdash;especially on subjects as important to people as religion&mdash;accelerates that crisis. No more AI slop in papers. If you are going to use AI, be honest about it, and actually verify that what you publish makes sense.</p>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png"></a></li>
+            <li><a href="https://crypticrisk.com"><img src="../../images/crypticrisk.png"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
