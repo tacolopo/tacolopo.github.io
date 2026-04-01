@@ -3,236 +3,327 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Anthony Rosa Blog</title>
+    <title>Blog | Anthony Rosa — Cybersecurity, AI & Technology</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Anthony Rosa's blog covering cybersecurity, artificial intelligence, privacy technology, policy analysis, and religion.">
+    <meta name="keywords" content="cybersecurity blog, AI, artificial intelligence, PowerShell security, Linux hardening, privacy cryptocurrency, Anthony Rosa, technology blog">
+    <meta name="author" content="Anthony Rosa">
+    <link rel="canonical" href="https://anthony-rosa.com/blog/">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Blog | Anthony Rosa">
+    <meta property="og:description" content="Anthony Rosa's blog covering cybersecurity, artificial intelligence, privacy technology, policy analysis, and religion.">
+    <meta property="og:image" content="https://anthony-rosa.com/images/user1.png">
+    <meta property="og:url" content="https://anthony-rosa.com/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Anthony Rosa">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | Anthony Rosa">
+    <meta name="twitter:description" content="Anthony Rosa's blog covering cybersecurity, artificial intelligence, privacy technology, policy analysis, and religion.">
+    <meta name="twitter:image" content="https://anthony-rosa.com/images/user1.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Anthony Rosa Blog",
+        "description": "Anthony Rosa's blog covering cybersecurity, artificial intelligence, privacy technology, policy analysis, and religion.",
+        "url": "https://anthony-rosa.com/blog/",
+        "author": {
+          "@type": "Person",
+          "name": "Anthony Rosa",
+          "url": "https://anthony-rosa.com"
+        },
+        "mainEntity": {
+          "@type": "Blog",
+          "name": "Anthony Rosa Blog",
+          "url": "https://anthony-rosa.com/blog/",
+          "blogPost": [
+            {
+              "@type": "BlogPosting",
+              "headline": "HIPHIL Novum: The AI Slop Journal",
+              "datePublished": "2026-03-30",
+              "url": "https://anthony-rosa.com/blog/posts/hiphil-novum-the-ai-slop-journal.html",
+              "image": "https://anthony-rosa.com/images/hiphilnovum.png",
+              "description": "HIPHIL Novum published Beijen and de Heide's AI slop study on the Pauline letters using a BiLSTM with AI-generated non-functional code.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "The Bitter Problem: Massive Models and Knowledge Discovery",
+              "datePublished": "2026-02-26",
+              "url": "https://anthony-rosa.com/blog/posts/the-bitter-problem.html",
+              "image": "https://anthony-rosa.com/images/thebitterproblem.png",
+              "description": "Rich Sutton's \"The Bitter Problem\" espoused the virtue of general purpose methods. Large general models are the key to transformational societal progress.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "Reflections on AI",
+              "datePublished": "2025-09-09",
+              "url": "https://anthony-rosa.com/blog/posts/reflections-on-ai.html",
+              "image": "https://anthony-rosa.com/images/reflections-on-ai.png",
+              "description": "Will there be jobs? Will this generate more inequality? Will a few large companies control everything?",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "How Did Shintoism Survive the Humanity Declaration?",
+              "datePublished": "2025-04-15",
+              "url": "https://anthony-rosa.com/blog/posts/how-did-shintoism-survive-the-humanity-declaration.html",
+              "image": "https://anthony-rosa.com/images/hirohito.png",
+              "description": "An exploration of how Shintoism remained Japan's largest religion despite Emperor Hirohito's 1946 Humanity Declaration renouncing his divinity.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "MAGA's Descent Into Socialism",
+              "datePublished": "2025-04-03",
+              "url": "https://anthony-rosa.com/blog/posts/magas-descent-into-socialism.html",
+              "image": "https://anthony-rosa.com/images/trump.png",
+              "description": "An analysis of how MAGA's economic policies, particularly regarding tariffs and trade, align with historical communist economic positions.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "Monero v. Zcash: Who Has the Better Privacy?",
+              "datePublished": "2025-03-25",
+              "url": "https://anthony-rosa.com/blog/posts/monero-v-zcash.html",
+              "image": "https://anthony-rosa.com/images/moncash.png",
+              "description": "Zcash shielded transactions provide better privacy than Monero.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "PowerShell Snippets to Monitor",
+              "datePublished": "2025-03-24",
+              "url": "https://anthony-rosa.com/blog/posts/powershell-snippets-to-monitor.html",
+              "image": "https://anthony-rosa.com/images/monitor.png",
+              "description": "Learn what PowerShell snippets you should pay special attention to and set up alerts for.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "Do Not Remove or Disable PowerShell",
+              "datePublished": "2024-05-25",
+              "url": "https://anthony-rosa.com/blog/posts/do-not-remove-or-disable-powershell.html",
+              "image": "https://anthony-rosa.com/images/powershell.png",
+              "description": "PowerShell should not be removed from Windows systems. Instead, PowerShell should be hardened and monitored.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            },
+            {
+              "@type": "BlogPosting",
+              "headline": "Increase Red Hat Enterprise Linux Hashing Rounds",
+              "datePublished": "2024-03-31",
+              "url": "https://anthony-rosa.com/blog/posts/increase-red-hat-enterprise-linux-hashing-rounds.html",
+              "image": "https://anthony-rosa.com/images/disa.png",
+              "description": "Follow my journey to increase the Red Hat Enterprise Linux default hashing round count.",
+              "author": { "@type": "Person", "name": "Anthony Rosa" }
+            }
+          ]
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://anthony-rosa.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://anthony-rosa.com/blog/"
+          }
+        ]
+      }
+    ]
+    </script>
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <div class="headerCol">
+    <!-- Breadcrumb -->
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="blog-breadcrumb">
+        <ol>
+          <li><a href="../index.html">Home</a></li>
+          <li aria-current="page">Blog</li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- Blog Content -->
+    <main>
+      <div class="sectionSpace">
         <div class="container">
-          <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-              <a class="navbar-brand">Anthony Rosa Blog</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Blog</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+          <h1 class="blog-page-title">Blog</h1>
 
-    <!-- Blog List Section -->
-    <div class="sectionSpace">
-      <div class="container">
-        <div class="portfolioCol">
-          <!-- Technology Section -->
-          <h2 class="section-title mb-4">Technology</h2>
-
-          <!-- HIPHIL Novum: The AI Slop Journal -->
-          <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-auto">
-                <div class="portfolioImgCol">
-                  <a href="posts/hiphil-novum-the-ai-slop-journal.html">
-                    <img src="../images/hiphilnovum.png" alt="HIPHIL Novum: The AI Slop Journal">
-                  </a>
+          <!-- Featured Post -->
+          <article class="blog-hero">
+            <a href="posts/hiphil-novum-the-ai-slop-journal.html" class="blog-hero__link">
+              <div class="row g-0 align-items-stretch">
+                <div class="col-lg-6">
+                  <div class="blog-hero__img">
+                    <img src="../images/hiphilnovum.png" alt="HIPHIL Novum: The AI Slop Journal" loading="eager" width="600" height="400">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="blog-hero__content">
+                    <span class="blog-category blog-category--ai">AI & Technology</span>
+                    <h2>HIPHIL Novum: The AI Slop Journal</h2>
+                    <time datetime="2026-03-30">March 30, 2026</time>
+                    <p>HIPHIL Novum published Beijen and de Heide's AI slop study on the Pauline letters using a BiLSTM with AI-generated non-functional code. They declined my critique, and their peer reviewer doesn't understand overfitting.</p>
+                  </div>
                 </div>
               </div>
-              <div class="col-md">
-                <div class="portfolioContentCol">
-                  <h4 class="lgTitle">
-                    <a href="posts/hiphil-novum-the-ai-slop-journal.html">HIPHIL Novum: The AI Slop Journal</a>
-                  </h4>
-                  <ul class="portfolioOption">
-                    <li><span class="dateLbl">March 30, 2026</span></li>
-                    <li>Blog</li>
-                  </ul>
-                  <p>HIPHIL Novum published Beijen and de Heide's AI slop study on the Pauline letters using a BiLSTM with AI-generated non-functional code. They declined my critique, and their peer reviewer doesn't understand overfitting.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            </a>
+          </article>
 
-          <!-- The Bitter Problem Article -->
-          <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-auto">
-                <div class="portfolioImgCol">
-                  <a href="posts/the-bitter-problem.html">
-                    <img src="../images/thebitterproblem.png" alt="The Bitter Problem: Massive Models and Knowledge Discovery">
-                  </a>
+          <!-- Blog Grid -->
+          <div class="blog-grid">
+
+            <article class="blog-card">
+              <a href="posts/the-bitter-problem.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/thebitterproblem.png" alt="The Bitter Problem: Massive Models and Knowledge Discovery" loading="lazy" width="400" height="250">
                 </div>
-              </div>
-              <div class="col-md">
-                <div class="portfolioContentCol">
-                  <h4 class="lgTitle">
-                    <a href="posts/the-bitter-problem.html">The Bitter Problem: Massive Models and Knowledge Discovery</a>
-                  </h4>
-                  <ul class="portfolioOption">
-                    <li><span class="dateLbl">February 26, 2026</span></li>
-                    <li>Blog</li>
-                  </ul>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--ai">AI & Technology</span>
+                  <h2>The Bitter Problem: Massive Models and Knowledge Discovery</h2>
+                  <time datetime="2026-02-26">February 26, 2026</time>
                   <p>Rich Sutton's "The Bitter Problem" espoused the virtue of general purpose methods. After programming AI models, I agree that large general models are the key to transformational societal progress.</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Reflections on AI Article -->
-          <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-auto">
-                <div class="portfolioImgCol">
-                  <a href="posts/reflections-on-ai.html">
-                    <img src="../images/reflections-on-ai.png" alt="Monero vs Zcash">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md">
-                <div class="portfolioContentCol">
-                  <h4 class="lgTitle">
-                    <a href="posts/reflections-on-ai.html">Reflections on AI</a>
-                  </h4>
-                  <ul class="portfolioOption">
-                    <li><span class="dateLbl">September 09, 2025</span></li>
-                    <li>Blog</li>
-                  </ul>
-                  <p>Will there be jobs? Will this generate more inequality? Will a few large companies control everything? Will countries engage in race-to-the-bottom policymaking and forfeit our privacy and security to give their domestic companies a competitive advantage? Will the world end?</p>
-                </div>
-              </div>
-            </div>
-          </div>
+              </a>
+            </article>
 
-          <!-- Monero vs Zcash Article -->
-          <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-auto">
-                <div class="portfolioImgCol">
-                  <a href="posts/monero-v-zcash.html">
-                    <img src="../images/moncash.png" alt="Monero vs Zcash">
-                  </a>
+            <article class="blog-card">
+              <a href="posts/reflections-on-ai.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/reflections-on-ai.png" alt="Reflections on AI" loading="lazy" width="400" height="250">
                 </div>
-              </div>
-              <div class="col-md">
-                <div class="portfolioContentCol">
-                  <h4 class="lgTitle">
-                    <a href="posts/monero-v-zcash.html">Monero v. Zcash: Who Has the Better Privacy?</a>
-                  </h4>
-                  <ul class="portfolioOption">
-                    <li><span class="dateLbl">March 25, 2025</span></li>
-                    <li>Blog</li>
-                  </ul>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--ai">AI & Technology</span>
+                  <h2>Reflections on AI</h2>
+                  <time datetime="2025-09-09">September 9, 2025</time>
+                  <p>Will there be jobs? Will this generate more inequality? Will a few large companies control everything? Will countries engage in race-to-the-bottom policymaking and forfeit our privacy and security?</p>
+                </div>
+              </a>
+            </article>
+
+            <article class="blog-card">
+              <a href="posts/how-did-shintoism-survive-the-humanity-declaration.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/hirohito.png" alt="How Did Shintoism Survive the Humanity Declaration?" loading="lazy" width="400" height="250">
+                </div>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--religion">Religion & History</span>
+                  <h2>How Did Shintoism Survive the Humanity Declaration?</h2>
+                  <time datetime="2025-04-15">April 15, 2025</time>
+                  <p>An exploration of how Shintoism remained Japan's largest religion despite Emperor Hirohito's 1946 Humanity Declaration renouncing his divinity.</p>
+                </div>
+              </a>
+            </article>
+
+            <article class="blog-card">
+              <a href="posts/magas-descent-into-socialism.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/trump.png" alt="MAGA's Descent Into Socialism" loading="lazy" width="400" height="250">
+                </div>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--policy">Policy</span>
+                  <h2>MAGA's Descent Into Socialism</h2>
+                  <time datetime="2025-04-03">April 3, 2025</time>
+                  <p>An analysis of how MAGA's economic policies, particularly regarding tariffs and trade, align with historical communist economic positions and contradict free market principles.</p>
+                </div>
+              </a>
+            </article>
+
+            <article class="blog-card">
+              <a href="posts/monero-v-zcash.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/moncash.png" alt="Monero v. Zcash: Who Has the Better Privacy?" loading="lazy" width="400" height="250">
+                </div>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--cyber">Cybersecurity</span>
+                  <h2>Monero v. Zcash: Who Has the Better Privacy?</h2>
+                  <time datetime="2025-03-25">March 25, 2025</time>
                   <p>Zcash shielded transactions provide better privacy than Monero.</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- PowerShell Snippets to Monitor Article -->
-          <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-auto">
-                <div class="portfolioImgCol">
-                  <a href="posts/powershell-snippets-to-monitor.html">
-                    <img src="../images/monitor.png" alt="An investigator with a magnifying glass.">
-                  </a>
+              </a>
+            </article>
+
+            <article class="blog-card">
+              <a href="posts/powershell-snippets-to-monitor.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/monitor.png" alt="PowerShell Snippets to Monitor" loading="lazy" width="400" height="250">
                 </div>
-              </div>
-              <div class="col-md">
-                <div class="portfolioContentCol">
-                  <h4 class="lgTitle">
-                    <a href="posts/powershell-snippets-to-monitor.html">PowerShell Snippets to Monitor</a>
-                  </h4>
-                  <ul class="portfolioOption">
-                    <li><span class="dateLbl">March 24, 2025</span></li>
-                    <li>Blog</li>
-                  </ul>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--cyber">Cybersecurity</span>
+                  <h2>PowerShell Snippets to Monitor</h2>
+                  <time datetime="2025-03-24">March 24, 2025</time>
                   <p>Learn what PowerShell snippets you should pay special attention to and set up alerts for.</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- Do Not Remove or Disable PowerShell -->
-          <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-auto">
-                <div class="portfolioImgCol">
-                  <a href="posts/do-not-remove-or-disable-powershell.html">
-                    <img src="../images/powershell.png" alt="PowerShell">
-                  </a>
+              </a>
+            </article>
+
+            <article class="blog-card">
+              <a href="posts/do-not-remove-or-disable-powershell.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/powershell.png" alt="Do Not Remove or Disable PowerShell" loading="lazy" width="400" height="250">
                 </div>
-              </div>
-              <div class="col-md">
-                <div class="portfolioContentCol">
-                  <h4 class="lgTitle">
-                    <a href="posts/do-not-remove-or-disable-powershell.html">Do Not Remove or Disable PowerShell</a>
-                  </h4>
-                  <ul class="portfolioOption">
-                    <li><span class="dateLbl">May 25, 2024</span></li>
-                    <li>Blog</li>
-                  </ul>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--cyber">Cybersecurity</span>
+                  <h2>Do Not Remove or Disable PowerShell</h2>
+                  <time datetime="2024-05-25">May 25, 2024</time>
                   <p>PowerShell should not be removed from Windows systems. Instead, PowerShell should be hardened and monitored.</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- Increase Red Hat Enterprise Linux Rounds -->
-          <div class="portfolioCard">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-auto">
-                <div class="portfolioImgCol">
-                  <a href="posts/increase-red-hat-enterprise-linux-hashing-rounds.html">
-                    <img src="../images/disa.png" alt="Defense Information Systems Agency">
-                  </a>
+              </a>
+            </article>
+
+            <article class="blog-card">
+              <a href="posts/increase-red-hat-enterprise-linux-hashing-rounds.html" class="blog-card__link">
+                <div class="blog-card__img">
+                  <img src="../images/disa.png" alt="Increase Red Hat Enterprise Linux Hashing Rounds" loading="lazy" width="400" height="250">
                 </div>
-              </div>
-              <div class="col-md">
-                <div class="portfolioContentCol">
-                  <h4 class="lgTitle">
-                    <a href="posts/increase-red-hat-enterprise-linux-hashing-rounds.html">Increase Red Hat Enterprise Linux Hashing Rounds</a>
-                  </h4>
-                  <ul class="portfolioOption">
-                    <li><span class="dateLbl">March 31, 2024</span></li>
-                    <li>Blog</li>
-                  </ul>
+                <div class="blog-card__content">
+                  <span class="blog-category blog-category--cyber">Cybersecurity</span>
+                  <h2>Increase Red Hat Enterprise Linux Hashing Rounds</h2>
+                  <time datetime="2024-03-31">March 31, 2024</time>
                   <p>Follow my journey to increase the Red Hat Enterprise Linux default hashing round count!</p>
                 </div>
-              </div>
-            </div>
+              </a>
+            </article>
+
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
       <div class="footerCol">
         <div class="container">
           <ul class="socialCol">
-            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../images/email.png"></a></li>
-            <li><a href="https://github.com/tacolopo"><img src="../images/github.png"></a></li>
-            <li><a href="https://crypticrisk.com"><img src="../images/crypticrisk.png"></a></li>
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../images/email.png" alt="Email" width="30" height="30"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../images/github.png" alt="GitHub" width="30" height="30"></a></li>
+            <li><a href="https://crypticrisk.com"><img src="../images/crypticrisk.png" alt="Cryptic Risk" width="30" height="30"></a></li>
           </ul>
         </div>
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
   </body>
-</html> 
+</html>
