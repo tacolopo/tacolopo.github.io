@@ -843,9 +843,13 @@ input[type=text], input[type=email], select, textarea {
    ================================ */
 .stats-bar {
   padding: 32px 0;
-  background: #fff;
-  border-top: 3px solid var(--secondaryColor);
-  border-bottom: 1px solid #eee;
+  background: transparent;
+}
+.stats-bar .container {
+  background: #f0f7ff;
+  border: 2px solid #a8d0f0;
+  border-radius: 12px;
+  padding: 24px;
 }
 .stat-item {
   padding: 12px 0;
