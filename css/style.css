@@ -523,7 +523,7 @@ body.navToggleActive {
 }
 @media (min-width:992px) {
   .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-  	max-width: 1080px;
+  	max-width: 890px;
   }
   .headerCol .container-fluid {
     padding-left: 30px;
@@ -868,235 +868,14 @@ input[type=text], input[type=email], select, textarea {
 }
 
 /* ================================
-   Homepage — Section Headings
-   ================================ */
-.section-heading {
-  font-family: var(--titleFont);
-  font-size: 32px;
-  font-weight: var(--bold);
-  color: var(--baseColor);
-  margin-bottom: 32px;
-}
-.section-heading::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 3px;
-  background: var(--primaryColor);
-  margin-top: 12px;
-}
-
-/* ================================
-   Homepage — Certification Cards
-   ================================ */
-.cert-card {
-  border-top: 3px solid var(--primaryColor);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.cert-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* ================================
-   Homepage — Project Card Grid
-   ================================ */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-.project-card {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  border-left: 4px solid var(--primaryColor);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-.project-card__link {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.project-card__link:hover {
-  color: inherit;
-}
-.project-card__img {
-  height: 200px;
-  overflow: hidden;
-}
-.project-card__img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-.project-card:hover .project-card__img img {
-  transform: scale(1.05);
-}
-.project-card__body {
-  padding: 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.project-card__body h3 {
-  font-family: var(--titleFont);
-  font-size: 22px;
-  font-weight: var(--bold);
-  color: var(--baseColor);
-  margin: 0 0 10px;
-  line-height: 1.3;
-}
-.project-card__body p {
-  color: #555;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 0;
-  flex: 1;
-}
-.project-card__tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-
-/* ================================
-   Homepage — Badges
-   ================================ */
-.tech-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  background: var(--primaryColor);
-  color: #fff;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: var(--bold);
-  letter-spacing: 0.3px;
-}
-.year-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  background: var(--baseColor);
-  color: #fff;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: var(--bold);
-}
-
-/* ================================
-   Homepage — Accomplishment Cards
-   ================================ */
-.accomplishment-card {
-  background: #fff;
-  border-radius: 8px;
-  border-left: 4px solid var(--secondaryColor);
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.accomplishment-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-.accomplishment-card:last-child {
-  margin-bottom: 0;
-}
-.accomplishment-card__img img {
-  border-radius: 6px;
-  width: 246px;
-  height: 184px;
-  object-fit: cover;
-}
-.accomplishment-card__body .lgTitle {
-  margin-bottom: 4px;
-}
-.accomplishment-card__body .lgTitle a {
-  color: var(--baseColor);
-  text-decoration: none;
-}
-.accomplishment-card__body .lgTitle a:hover {
-  color: var(--primaryColor);
-}
-.accomplishment-card__meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 0 12px;
-  color: #555;
-  font-size: 15px;
-}
-.highlight-text {
-  color: var(--primaryColor);
-  font-weight: var(--bold);
-}
-
-/* ================================
-   Homepage — Testimonials
-   ================================ */
-.testimonialCard {
-  position: relative;
-  padding: 24px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-}
-.testimonialCard::before {
-  content: "\201C";
-  font-size: 60px;
-  color: var(--primaryColor);
-  opacity: 0.2;
-  font-family: Georgia, serif;
-  line-height: 1;
-  display: block;
-  margin-bottom: -20px;
-}
-.tImgCol {
-  width: 110px;
-  height: 110px;
-}
-
-/* ================================
-   Homepage — Footer
-   ================================ */
-.footer-name {
-  font-family: var(--titleFont);
-  font-size: 18px;
-  font-weight: var(--bold);
-  color: var(--baseColor);
-  margin-bottom: 12px;
-}
-.footerCol {
-  border-top: 1px solid #E0E0E0;
-}
-
-/* ================================
-   Homepage — Responsive
+   Homepage — Responsive (stats/hero)
    ================================ */
 @media (max-width: 991px) {
-  .project-grid {
-    gap: 24px;
-  }
   .stat-number {
     font-size: 30px;
   }
-  .section-heading {
-    font-size: 28px;
-  }
 }
 @media (max-width: 767px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
   .hero-subtitle {
     font-size: 17px;
   }
@@ -1106,40 +885,14 @@ input[type=text], input[type=email], select, textarea {
   .stat-label {
     font-size: 11px;
   }
-  .section-heading {
-    font-size: 26px;
-    margin-bottom: 24px;
-  }
-  .accomplishment-card__img img {
-    width: 100%;
-    height: auto;
-    max-width: 246px;
-  }
-  .tImgCol {
-    width: 80px;
-    height: 80px;
-  }
-  .testimonialCard {
-    padding: 16px;
-  }
-  .testimonialCard::before {
-    font-size: 40px;
-    margin-bottom: -12px;
-  }
   .bannerBtnCol .btn {
     font-size: 15px;
     padding: 8px 16px;
   }
 }
 @media (max-width: 575px) {
-  .section-heading {
-    font-size: 24px;
-  }
   .stat-number {
     font-size: 24px;
-  }
-  .project-card__body h3 {
-    font-size: 19px;
   }
 }
 

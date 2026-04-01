@@ -42,7 +42,7 @@ var swiper = new Swiper(".certificatesSlider", {
       spaceBetween: 16,
     },
     1024: {
-      slidesPerView: 3,
+      slidesPerView: 2,
       spaceBetween: 16,
     },
   },
