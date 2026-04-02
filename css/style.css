@@ -120,7 +120,7 @@ a, .btn {
 }
 .smText {
   font-size: 36px;
-  font-weight: var(--bold);
+  font-weight: var(--bold) !important;
   color: black;
 }
 .xsTitle {
