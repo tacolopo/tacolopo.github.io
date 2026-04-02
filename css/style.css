@@ -120,9 +120,7 @@ a, .btn {
 }
 .smText {
   font-size: 36px;
-  text-shadow: 
-  0 0 5px #000000, 
-  0 0 25px #000000;
+  font-weight: var(--bold);
   color: black;
 }
 .xsTitle {
@@ -898,6 +896,35 @@ input[type=text], input[type=email], select, textarea {
   .stat-number {
     font-size: 24px;
   }
+}
+
+/* ================================
+   Homepage — Work History
+   ================================ */
+.workHistoryRole {
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+.workHistoryRole:last-child {
+  border-bottom: none;
+}
+.workHistoryRole h5 {
+  font-family: var(--titleFont);
+  font-size: 18px;
+  font-weight: var(--bold);
+  margin-bottom: 2px;
+  color: var(--baseColor);
+}
+.workHistoryRole p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0;
+  color: #555;
+}
+.workHistoryRole .rolePeriod {
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
 }
 
 /* Update blog content styles */
