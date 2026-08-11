@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Problem with AI Text Watermarks</title>
+
+    <meta name="description" content="Anthropic is adding hidden watermarks to Claude-generated text. Here is how SynthID-style text watermarking works, where it fails, and why it can create false certainty.">
+    <meta name="keywords" content="Anthropic, Claude, SynthID, AI watermark, text watermarking, AI-generated text, tournament sampling, EU AI Act">
+    <meta name="author" content="Anthony Rosa">
+    <link rel="canonical" href="https://anthony-rosa.com/blog/posts/the-problem-with-ai-text-watermarks.html">
+
+    <meta property="og:title" content="The Problem with AI Text Watermarks">
+    <meta property="og:description" content="How statistical watermarks in AI-generated text work, where they fail, and why they can create false certainty.">
+    <meta property="og:image" content="https://anthony-rosa.com/images/ai-text-watermark.png">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://anthony-rosa.com/blog/posts/the-problem-with-ai-text-watermarks.html">
+    <meta property="og:site_name" content="Anthony Rosa">
+    <meta property="article:published_time" content="2026-08-11T00:00:00Z">
+    <meta property="article:author" content="Anthony Rosa">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Problem with AI Text Watermarks">
+    <meta name="twitter:description" content="How statistical watermarks in AI-generated text work, where they fail, and why they can create false certainty.">
+    <meta name="twitter:image" content="https://anthony-rosa.com/images/ai-text-watermark.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The Problem with AI Text Watermarks",
+      "description": "How statistical watermarks in AI-generated text work, where they fail, and why they can create false certainty.",
+      "image": "https://anthony-rosa.com/images/ai-text-watermark.png",
+      "author": {"@type": "Person", "name": "Anthony Rosa", "url": "https://anthony-rosa.com/"},
+      "publisher": {"@type": "Person", "name": "Anthony Rosa"},
+      "datePublished": "2026-08-11",
+      "dateModified": "2026-08-11",
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://anthony-rosa.com/blog/posts/the-problem-with-ai-text-watermarks.html"},
+      "keywords": ["Anthropic", "Claude", "SynthID", "AI watermark", "text watermarking", "tournament sampling", "EU AI Act"]
+    }
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      body { padding-top: 0; }
+      .blogPost { max-width: 800px; margin: 0 auto; padding: 20px 1rem 2rem; }
+      .blogContent { font-size: 1.1rem; line-height: 1.8; color: #333; }
+      .blogMeta { color: #666; margin: 1rem 0 2rem; }
+      .blogImage { max-width: 100%; height: auto; margin: 2rem 0; }
+      .watermark-example { overflow-x: auto; margin: 1.5rem 0; padding: 1rem 1.25rem; background: #f4f6f8; border-left: 4px solid #334e68; }
+      .watermark-example pre { margin: 0; font-size: 1rem; line-height: 1.7; }
+    </style>
+  </head>
+  <body>
+    <a href="/" class="backArrow">&larr;</a>
+
+    <article class="blogPost">
+      <div style="position: relative; z-index: 1;">
+        <h1 class="xlTitle">The Problem with AI Text Watermarks</h1>
+      </div>
+
+      <div class="blogImage">
+        <img src="../../images/ai-text-watermark.png" alt="A hidden statistical pattern being detected in a stream of AI-generated tokens" class="img-fluid" width="1536" height="1024">
+      </div>
+
+      <div class="blogMeta">
+        <span class="date">August 11, 2026</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+
+      <div class="blogContent">
+        <p>Anthropic <a href="https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content">announced</a> that for “Claude models launched on or after August 2, 2026”, “generated text will carry embedded watermarks”. Now, you might say, this is an EU requirement, and the EU is famously <a href="https://www.ft.com/content/d4fda2ec-91cd-4a13-a058-e6718ec38dd1">damagingly overregulated</a> (What else could we expect from our European brethren besides more regulation? Innovation?). BUT, while this is only required in the EU, because Anthropic hates you, they are rolling this out globally. After scraping the world’s knowledge and using it without attribution, they now will not let you use it without attribution. How ethical!</p>
+
+        <p>Ok, ill-advised rant aside, this is a consequential decision with ramifications. At root, the issue is obviously that AI-generated text could carry real-world consequences if it’s masquerading as something authentically generated by a human (think of a deepfake video of a nuclear launch, though how this relates to pure text is less clear) and people are <a href="https://www.nytimes.com/2026/06/18/us/ai-apps-students-cheat.html">taking credit for AI’s work</a>.</p>
+
+        <p>Right now, <a href="https://www.nature.com/articles/s41586-024-08025-4">SynthID</a> is already deployed by Google as a solution. The short summary is that it creates a hidden pattern in the text. Currently, LLMs choose next tokens probabilistically. In the sentence <i>the cat ran ____</i>. There might be a 90% chance that the next token is <i>fast</i>, a 5% chance that it is <i>quick</i>, and a 5% chance that it is <i>well</i>. SynthID adds an extra layer that uses a secret to sample multiple candidate tokens and select among them using keyed, context-dependent scoring functions, without changing the marginal output probabilities.</p>
+
+        <p>Think of a six-sided dice roll where we have the secret “Prefer Even Numbers” or “Prefer Odd Numbers”. If we roll two dice and get 2 and 5, using our secret, we may select 2. Now, in this instance, the odds of Even/Odd are 50/50, so the final output probability for any dice number remains 16.7%. However, if you <i>know</i> the secret key, you can see how the outputs align with the expectation of that secret:</p>
+
+        <div class="watermark-example" aria-label="Example of a secret watermark preference matching generated outputs">
+          <pre>Secret preference: O E O E E
+Actual output:     5 2 3 4 6
+Matches?          ✓ ✓ ✓ ✓ ✓</pre>
+        </div>
+
+        <p>Without the watermarking secret, you would expect to see 50% of the outputs match the preference. With the secret, it is much higher, again without disturbing the aggregate distributions. So, the AI-generated watermark is not an actual watermark, but a correlation of output tokens to some pattern.</p>
+
+        <p>What are the problems here? A few things.</p>
+        <ol>
+          <li>Performance depends on <a href="https://www.nature.com/articles/s41586-024-08025-4">length</a> (“longer texts contain more watermarking evidence, and so we have more statistical certainty when making a decision”).</li>
+          <li>Performance depends on <a href="https://www.nature.com/articles/s41586-024-08025-4">model settings</a> (“if the LLM distribution is very low entropy, meaning it almost always returns the exact same response to the given prompt, then Tournament sampling cannot choose tokens that score more highly under the g functions. In short, like other generative watermarks, Tournament sampling performs better when there is more entropy in the LLM distribution, and is less effective when there is less entropy.”)</li>
+          <li>A tradeoff remains between <a href="https://www.nature.com/articles/s41586-024-08025-4">detectability and quality-distortion</a> (“weaker levels of non-distortion can reduce text quality and diversity, whereas stronger levels of non-distortion can reduce detectability and increase computational complexity”).</li>
+          <li>Understanding the above constraints demonstrates that evading this mechanism is possible. Thus, by introducing it as a “watermark” it provides a <b>false</b> sense of certainty about knowing that the text is AI-generated.</li>
+        </ol>
+
+        <p>Overall, this is a bad idea from Anthropic, which unfortunately has become the bad idea fairy.</p>
+      </div>
+    </article>
+
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png" alt="Email"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png" alt="GitHub"></a></li>
+            <li><a href="https://www.linkedin.com/in/anthony-rosa-tn"><img src="../../images/linkedin.svg" alt="LinkedIn"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
