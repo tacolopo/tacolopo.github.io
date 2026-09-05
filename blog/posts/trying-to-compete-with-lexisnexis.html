@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trying to Compete with LexisNexis</title>
+
+    <meta name="description" content="What building legal software taught me about the obstacles to competing with established SaaS products.">
+    <meta name="keywords" content="LexisNexis, SaaS, artificial intelligence, legal software, custom software">
+    <meta name="author" content="Anthony Rosa">
+    <link rel="canonical" href="https://anthony-rosa.com/blog/posts/trying-to-compete-with-lexisnexis.html">
+
+    <meta property="og:title" content="Trying to Compete with LexisNexis">
+    <meta property="og:description" content="What building legal software taught me about the obstacles to competing with established SaaS products.">
+    <meta property="og:image" content="https://anthony-rosa.com/images/trying-to-compete-with-lexisnexis.png">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://anthony-rosa.com/blog/posts/trying-to-compete-with-lexisnexis.html">
+    <meta property="og:site_name" content="Anthony Rosa">
+    <meta property="article:published_time" content="2026-09-05T00:00:00Z">
+    <meta property="article:author" content="Anthony Rosa">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trying to Compete with LexisNexis">
+    <meta name="twitter:description" content="What building legal software taught me about the obstacles to competing with established SaaS products.">
+    <meta name="twitter:image" content="https://anthony-rosa.com/images/trying-to-compete-with-lexisnexis.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Trying to Compete with LexisNexis",
+      "description": "What building legal software taught me about the obstacles to competing with established SaaS products.",
+      "image": "https://anthony-rosa.com/images/trying-to-compete-with-lexisnexis.png",
+      "author": {"@type": "Person", "name": "Anthony Rosa", "url": "https://anthony-rosa.com/"},
+      "publisher": {"@type": "Person", "name": "Anthony Rosa"},
+      "datePublished": "2026-09-05",
+      "dateModified": "2026-09-05",
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://anthony-rosa.com/blog/posts/trying-to-compete-with-lexisnexis.html"},
+      "keywords": ["LexisNexis", "SaaS", "artificial intelligence", "legal software", "custom software"]
+    }
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <style>
+      body { padding-top: 0; }
+      .blogPost { padding-top: 20px !important; max-width: 800px; margin: 0 auto; padding: 20px 1rem 2rem; }
+      .blogContent { font-size: 1.1rem; line-height: 1.8; color: #333; }
+      .blogMeta { color: #666; margin: 1rem 0 2rem; }
+      .blogImage { height: auto; max-height: none; margin: 2rem 0; }
+      .blogImage img { display: block; width: 100%; height: auto; }
+    </style>
+  </head>
+  <body>
+    <a href="/" class="backArrow">&larr;</a>
+
+    <article class="blogPost">
+      <div style="position: relative; z-index: 1;">
+        <h1 class="xlTitle">Trying to Compete with LexisNexis</h1>
+      </div>
+
+      <div class="blogImage">
+          <img src="../../images/trying-to-compete-with-lexisnexis.png" alt="A knight approaching a castle flying LexisNexis banners" class="img-fluid" width="1672" height="941">
+        </div>
+
+      <div class="blogMeta">
+        <span class="date">September 5, 2026</span>
+        <span class="author">by Anthony Rosa</span>
+      </div>
+
+      <div class="blogContent">
+        <p>I have previously been critical of SaaS products, especially in the age of artificial intelligence. <em>How can Tenable not release version plugins immediately!</em> <em>Who is still paying for Adobe Acrobat bloatware?</em> Now that any engineer can 100x their productivity, it appears many products can be internally customized to an organization's liking. This isn't true for very small businesses who can, for example, simply use free PDF editors online for their occassional needs, nor for massive enterprise organizations who have significant revenue and don't want to deal with custom tools.</p>
+
+        <p>But, medium sized businesses are in a sweet-spot where they are big enough that creating a custom tool involves saving a non-trivial number of licenses while they are small enough to care about tailoring products to their niche needs. These medium sized businesses are detrimentally too small for their feature requests to alter the product direction of SaaS and they are, beneficially, too small to encounter the mass of edge cases software products run into when deployed across thousands of different organizations.</p>
+
+        <p>This thesis, if true, means there is a massive latent market for developing custom software tools for medium sized businesses. It's sometimes hard to understand this when you're immersed in the technology industry, and it seems everyone is already vibe coding their own tools, but in the real world, many organizations do not want to touch custom software design and have limited exposure to AI outside of chatbots and what their SaaS has natively integrated.</p>
+
+        <p>Nevertheless, I have recently discovered that challenging current SaaS solutions is a bigger task than it seems. Beyond the obvious reputability, maintainability, and risk-transference benefits that come with using SaaS from major companies, there are many legitimate obstacles that only current players are positioned to solve.</p>
+
+        <p>For example, take LexisNexis, which offers legal software and solutions. They have a trove of features that are extremely expensive ($100+ per person) that seem like they could be easily replicated, and from customer interviews, they seem to be far behind in deploying useful AI services. One easy example is tracking new cases or opinions that are relevant to a current case. This service is useful because a new opinion or ruling could impact a current case and give your opponents an advantage in court if you're unaware of the ruling. I built this out:</p>
+
+        <div class="blogImage">
+          <a href="../../images/trying-to-compete-with-lexisnexis-decisions.png" aria-label="View full-size screenshot: Caselaw Watch dashboard showing new decisions and cases being monitored"><img src="../../images/trying-to-compete-with-lexisnexis-decisions.png" alt="Caselaw Watch dashboard showing new decisions and cases being monitored" class="img-fluid" width="1364" height="609" loading="lazy"></a>
+        </div>
+
+        <p>This works by uploading a document or manually entering in case details, then AI uses the legal ideas and contexts to probe CourtTracker's API for relevant new content:</p>
+
+        <div class="blogImage">
+          <a href="../../images/trying-to-compete-with-lexisnexis-case-details.png" aria-label="View full-size screenshot: Caselaw Watch case summary, jurisdiction, and legal issues to monitor"><img src="../../images/trying-to-compete-with-lexisnexis-case-details.png" alt="Caselaw Watch case summary, jurisdiction, and legal issues to monitor" class="img-fluid" width="1364" height="609" loading="lazy"></a>
+        </div>
+
+        <p>There are other features I built out that seem less available through LexisNexis (though I could be wrong!) such as judge profiling. This use case allows you to search a judge and get a summary on their philosophy, how they write their opinions, what cases they cite, etc. This is all useful information for developing a persuasive case for your specific judge:</p>
+
+        <div class="blogImage">
+          <a href="../../images/trying-to-compete-with-lexisnexis-research.png" aria-label="View full-size screenshot: Caselaw Watch research showing case reasoning and cited authorities"><img src="../../images/trying-to-compete-with-lexisnexis-research.png" alt="Caselaw Watch research showing case reasoning and cited authorities" class="img-fluid" width="875" height="615" loading="lazy"></a>
+        </div>
+
+        <p>So what is the problem then? Why is LexisNexis unfeasible to challenge? First, the cost of missing a case in your catalog has huge consequences. Relying on CourtTracker and an AI search instills less confidence in a customer than knowing a huge organization is scouring multiple sources for new materials. Second, secondary materials are <a href="https://www.lexisnexis.com/en-us/terms/supplemental.page">not covered by single agreements</a>, and each may need to have their own licenses negotiated. Negotiating and maintaining these agreements is difficult for a small organization and easy for a large one. Third, LexisNexis is already <a href="https://www.tn.gov/generalservices/procurement/central-procurement-office--cpo-/library-/cpo-laws-central-procurement-office.html">partnered with the TN state government</a>. This alone is a giant moat for challenging them. Fourth, LexisNexis is already integrated into most law firms' workflows. Any challenging service will need parity with the current one, which requires thousands of dollars in running a production system with no contracts. In other words, there is a major cold start problem for creating a competitor service.</p>
+
+        <p>Effectively, it is not feasible to challenge LexisNexis under these conditions. What would make more sense is for an AI team to supplement LexisNexis to offer more services, though this type of contracting work appears difficult to break into with a contact and with little market pressure forcing LexisNexis to do so (if they change their minds, I'm happy to help 😉). These moats are often hidden for non-software engineers and, I think, will make it difficult for non-frontier organizations to challenge many existing SaaS products.</p>
+      </div>
+    </article>
+
+    <footer>
+      <div class="footerCol">
+        <div class="container">
+          <ul class="socialCol">
+            <li><a href="mailto:anthonyrosa@crypticrisk.com"><img src="../../images/email.png" alt="Email"></a></li>
+            <li><a href="https://github.com/tacolopo"><img src="../../images/github.png" alt="GitHub"></a></li>
+            <li><a href="https://www.linkedin.com/in/anthony-rosa-tn"><img src="../../images/linkedin.svg" alt="LinkedIn"></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
