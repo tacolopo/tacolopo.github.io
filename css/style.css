@@ -901,9 +901,22 @@ input[type=text], input[type=email], select, textarea {
 /* ================================
    Homepage — Work History
    ================================ */
-#work-history .portfolioImgCol img,
-#education .portfolioImgCol img {
+#work-history .portfolioImgCol img {
   object-fit: contain;
+}
+#education .portfolioImgCol {
+  width: 246px;
+  height: 184px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#education .portfolioImgCol img {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 0;
 }
 .workHistoryRole {
   padding: 6px 0;
