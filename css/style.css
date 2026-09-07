@@ -901,7 +901,8 @@ input[type=text], input[type=email], select, textarea {
 /* ================================
    Homepage — Work History
    ================================ */
-#work-history .portfolioImgCol img {
+#work-history .portfolioImgCol img,
+#education .portfolioImgCol img {
   object-fit: contain;
 }
 .workHistoryRole {
