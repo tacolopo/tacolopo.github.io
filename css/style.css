@@ -1039,6 +1039,37 @@ input[type=text], input[type=email], select, textarea {
   object-fit: cover;
 }
 
+.blogPost .blogImage--sourced {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+.blogPost .blogImage--sourced img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.blogPost .blogImage--sourced figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.blogPost .blogImage--brand img {
+  width: 100%;
+  max-width: 640px;
+  padding: 24px;
+  background: #fff;
+}
+
 /* Update the blog post styles */
 .blogPost {
   max-width: 800px;
@@ -1306,6 +1337,27 @@ input[type=text], input[type=email], select, textarea {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+}
+
+.blog-card__img--brand {
+  background: #fff;
+}
+
+.blog-card__img--brand img {
+  object-fit: contain;
+  padding: 24px;
+}
+
+.blog-card__img--hiphil {
+  background: #21169a;
+}
+
+.blog-card__img--hirohito img {
+  object-position: center 8%;
+}
+
+.blog-card__img--paul img {
+  object-position: center 18%;
 }
 .blog-card:hover .blog-card__img img {
   transform: scale(1.05);
