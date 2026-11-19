@@ -1,5 +1,6 @@
 {
   "name": "anthony-rosa-agent-readiness",
+  "rules": [{ "type": "Text", "globs": ["**/SKILL.md"], "fallthrough": true }],
   "main": "index.js",
   "compatibility_date": "2026-10-08",
   "workers_dev": false,
