@@ -1,0 +1,9 @@
+{
+  "name": "anthony-rosa-agent-readiness",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "negotiator": "1.0.0",
+    "node-html-markdown": "2.0.0"
+  }
+}

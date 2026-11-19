@@ -1,0 +1,15 @@
+# Anthony Rosa
+
+> Anthony Rosa's portfolio and essays on artificial intelligence, cybersecurity, and theology.
+
+## Portfolio
+
+- [Work history](https://anthony-rosa.com/#work-history)
+- [Education](https://anthony-rosa.com/#education)
+- [Open source contributions](https://anthony-rosa.com/#recent-code)
+- [Research papers](https://anthony-rosa.com/#papers)
+
+## Writing
+
+- [Blog](https://anthony-rosa.com/blog/): Article titles, dates, and summaries.
+- [Sitemap](https://anthony-rosa.com/sitemap.xml): Canonical URLs for the portfolio, blog, and individual articles.
