@@ -5,8 +5,12 @@ const converter = new NodeHtmlMarkdown({ ignore: ["head", "footer", "nav"] });
 const discovery = '</llms.txt>; rel="describedby"; type="text/plain"';
 
 export default {
-  async fetch(request) {
-    if (!["GET", "HEAD"].includes(request.method)) return fetch(request);
+  async fetch(request, env, ctx) {
+    ctx.passThroughOnException();
+    // A wildcard route also matches the homepage when it has a query string.
+    const { pathname } = new URL(request.url);
+    const page = pathname === "/" || pathname === "/index.html" || pathname.startsWith("/blog/");
+    if (!page || !["GET", "HEAD"].includes(request.method)) return fetch(request);
 
     const accept = request.headers.get("Accept") || "*/*";
     const negotiator = new Negotiator({ headers: { accept } });
